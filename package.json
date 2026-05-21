@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "db:push": "drizzle-kit push",
-    "db:seed": "tsx src/db/seed.ts"
+    "db:seed": "tsx --env-file=.env src/db/seed.ts",
+    "db:seed-100": "tsx --env-file=.env src/db/seed-100.ts"
   },
   "dependencies": {
     "@astrojs/netlify": "^7.0.10",

@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  description: string;
+  date: Date;
+  category?: string;
+}
+
+const { title, slug, description, date, category } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat('ko-KR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(date);
+---
+
+<a href={`/blog/${slug}`} class="block group h-full">
+  <article class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full relative overflow-hidden">
+    <!-- Ambient glow element -->
+    <div class="absolute -right-12 -top-12 w-28 h-28 bg-purple-500/5 rounded-full blur-2xl group-hover:bg-purple-500/15 group-hover:scale-125 transition-all duration-500"></div>
+
+    <div class="space-y-4">
+      <div class="flex items-center justify-between text-xs text-gray-400">
+        <time datetime={date.toISOString()}>{formattedDate}</time>
+        {category && (
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase border border-purple-500/20 bg-purple-500/10 text-purple-300">
+            {category}
+          </span>
+        )}
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-xl font-bold font-display text-white group-hover:text-purple-300 transition-colors duration-300 leading-tight">
+          {title}
+        </h3>
+        <p class="text-gray-400 text-sm line-clamp-3 leading-relaxed">
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center text-purple-400 text-xs font-semibold group-hover:text-pink-400 transition-colors duration-300">
+      <span>Read Article</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </article>
+</a>

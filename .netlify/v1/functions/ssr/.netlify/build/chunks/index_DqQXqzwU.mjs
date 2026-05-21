@@ -1,0 +1,45 @@
+import { c as createComponent } from './astro-component_UqISaWAv.mjs';
+import 'piccolore';
+import { r as renderComponent, o as renderTemplate, m as maybeRenderHead } from './ssr-function_D15MiK1Z.mjs';
+import { d as db, $ as $$BaseLayout } from './index_IV5mcOjB.mjs';
+import { $ as $$BlogCard } from './BlogCard_COLDYo21.mjs';
+
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$props, $$slots);
+  Astro2.self = $$Index;
+  let latestPosts = [];
+  try {
+    latestPosts = await db.query.posts.findMany({
+      orderBy: (posts, { desc }) => [desc(posts.createdAt)],
+      limit: 3,
+      with: {
+        category: true
+      }
+    });
+  } catch (error) {
+    console.error("Failed to load posts in Home:", error);
+  }
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "Home", "description": "Explore deep technical insights, modern design patterns, and engineering experiences." }, { "default": async ($$result2) => renderTemplate`  ${maybeRenderHead()}<section class="py-12 md:py-20 flex flex-col justify-center relative overflow-hidden"> <!-- Premium floating neon background shapes --> <div class="absolute top-1/4 left-1/3 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div> <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl -z-10 animate-pulse" style="animation-duration: 8s;"></div> <div class="space-y-6 max-w-3xl"> <!-- Tag / Badge --> <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/5 text-purple-300 text-xs font-semibold tracking-wider uppercase"> <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping"></span> <span>Tech Stack of 2026</span> </div> <!-- Main Headline --> <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display leading-tight tracking-tight text-white">
+Designing for <span class="text-gradient">Performance</span> and Aesthetics.
+</h1> <!-- Description --> <p class="text-gray-400 text-lg md:text-xl leading-relaxed">
+안녕하세요! 2026년 최신 기술 스택인 <span class="text-white font-medium">Astro (SSR)</span>, <span class="text-white font-medium">Drizzle ORM</span>, <span class="text-white font-medium">Tailwind CSS v4</span>, 그리고 <span class="text-white font-medium">Netlify Postgres DB</span>로 구성된 고성능 개발 블로그입니다. 깊이 있는 아키텍처 글과 세련된 디자인 가이드를 만나보세요.
+</p> <!-- CTA Action buttons --> <div class="pt-4 flex flex-wrap gap-4"> <a href="/blog" class="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-500/35 hover:-translate-y-0.5 transition-all duration-300">
+Explore Articles
+</a> <a href="/guestbook" class="px-6 py-3 rounded-xl glass-panel text-white hover:text-purple-300 font-semibold text-sm hover:-translate-y-0.5 transition-all duration-300">
+Sign Guestbook
+</a> </div> </div> </section>  <section class="py-12 border-t border-b border-white/5 my-8"> <h2 class="text-sm font-semibold tracking-wider text-gray-500 uppercase mb-6 font-display">Engineered With</h2> <div class="grid grid-cols-2 md:grid-cols-4 gap-4"> <div class="glass-panel p-4 rounded-xl flex items-center space-x-3"> <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 font-bold text-sm">A</div> <div> <h3 class="text-white font-bold text-sm font-display">Astro 5.0</h3> <p class="text-gray-500 text-xs">Zero-JS Islands</p> </div> </div> <div class="glass-panel p-4 rounded-xl flex items-center space-x-3"> <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 font-bold text-xs">Dr</div> <div> <h3 class="text-white font-bold text-sm font-display">Drizzle ORM</h3> <p class="text-gray-500 text-xs">Type-safe SQL</p> </div> </div> <div class="glass-panel p-4 rounded-xl flex items-center space-x-3"> <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 font-bold text-xs">TW</div> <div> <h3 class="text-white font-bold text-sm font-display">Tailwind v4</h3> <p class="text-gray-500 text-xs">Modern Styling</p> </div> </div> <div class="glass-panel p-4 rounded-xl flex items-center space-x-3"> <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 font-bold text-xs">PG</div> <div> <h3 class="text-white font-bold text-sm font-display">Netlify DB</h3> <p class="text-gray-500 text-xs">Serverless Postgres</p> </div> </div> </div> </section>  <section class="py-12"> <div class="flex justify-between items-end mb-8"> <div class="space-y-1"> <h2 class="text-2xl md:text-3xl font-extrabold font-display text-white">Recent Publications</h2> <p class="text-gray-500 text-sm">Discover what I've been writing about recently</p> </div> <a href="/blog" class="text-sm font-semibold text-purple-400 hover:text-pink-400 transition-colors flex items-center space-x-1 group"> <span>View All</span> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path> </svg> </a> </div> ${latestPosts.length === 0 ? renderTemplate`<div class="glass-panel rounded-2xl p-12 text-center text-gray-500 space-y-4"> <p class="text-lg">No posts published yet.</p> <p class="text-sm text-gray-600">Ensure the database is seeded and online to query records.</p> </div>` : renderTemplate`<div class="grid grid-cols-1 md:grid-cols-3 gap-6"> ${latestPosts.map((post) => renderTemplate`${renderComponent($$result2, "BlogCard", $$BlogCard, { "title": post.title, "slug": post.slug, "description": post.description, "date": post.createdAt, "category": post.category?.name })}`)} </div>`} </section> ` })}`;
+}, "C:/bong/git/netlify-blog/src/pages/index.astro", void 0);
+
+const $$file = "C:/bong/git/netlify-blog/src/pages/index.astro";
+const $$url = "";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

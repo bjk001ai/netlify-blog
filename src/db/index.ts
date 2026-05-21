@@ -2,7 +2,7 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 
-const connectionString = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/netlify_blog';
+const connectionString = (typeof import.meta !== 'undefined' && import.meta.env?.DATABASE_URL) || process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/netlify_blog';
 
 // Netlify serverless / edge environment optimizes connections with single-instance postgres client.
 const client = postgres(connectionString, { max: 1 });

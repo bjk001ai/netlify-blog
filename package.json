@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
     "db:seed": "tsx --env-file=.env src/db/seed.ts",
     "db:seed-100": "tsx --env-file=.env src/db/seed-100.ts"
   },
